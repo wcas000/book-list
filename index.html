@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="book-data.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body onload="domReady()" >
+  <div class="wrapper">
+    
+    <div>bookCategory: <input id="bookCategory" type="text"></div>
+    <div>bookName: <input id="bookName" type="text"></div>
+    <div>bookAuthor: <input id="bookAuthor" type="text"></div>
+    <div>bookBoughtDate: <input id="bookBoughtDate" type="text"></div>
+    <div>bookPublisher: <input id="bookPublisher" type="text"></div>
+    <button onclick="add()">新增</button>
+    <button onclick="updateBook()">修改</button>
+    <div>搜尋關鍵字 <input id="bookSearch" type="text" oninput="search()"></div></div>
+    <button onclick="search()">搜尋</button>
+    
+    <table id="result">
+
+      <tr>
+        <th></th>
+        <th></th>
+        <th>BookId</th>
+        <th>BookCategory</th>
+        <th>BookName</th>
+        <th>BookAuthor</th>
+        <th>BookBoughtDate</th>
+        <th>BookPublisher</th>
+      </tr>
+      
+
+    </table>
+  </div>
+
+  <div id="paginator" class="paginator">
+    <span onclick="firstPage()"><<</span>
+    <span class="pre-page" onclick="prePage()"> < </span>
+    <span id="page">
+      
+    </span>
+    <span class="next-page" onclick="nextPage()"> > </span>
+    <span onclick="lastPage()">>></span>
+
+
+
+  </div>
+</body>
+</html>

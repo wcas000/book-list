@@ -1,0 +1,16 @@
+.currentPage {
+  color:red;
+}
+.paginator {
+  display: flex;
+  justify-content: center;
+}
+.pre-page {
+  margin-left: 15px;
+  margin-right: 5px;
+}
+.next-page {
+  margin-right: 15px;
+  margin-left: 5px;
+}
+
