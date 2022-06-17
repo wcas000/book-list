@@ -1,7 +1,7 @@
 let tempBookIndex = null;
 let tempBookId = null;
 let tempPage = localStorage.getItem('page');
-let pageSize = 10;
+let pageSize = 15;
 let filterBook = []
 //當local storage沒有的時候
 if (tempPage === null){
