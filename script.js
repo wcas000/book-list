@@ -46,7 +46,7 @@ function result() {
   for (let j = document.getElementsByName('trData').length - 1; j >= 0; j--) {
     document.getElementsByName('trData')[j].remove()
   };
-
+  
   for (i = (tempPage - 1) * pageSize; i < getPageEnd(); i++) {
     document.getElementById('result').innerHTML = document.getElementById('result').innerHTML +
       `
