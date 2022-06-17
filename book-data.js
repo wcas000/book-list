@@ -7,6 +7,14 @@ var bookData = [{
     "BookPublisher": "創創公司"
 },
 {
+    "BookId": 2,
+    "BookCategory": "資料庫",
+    "BookName": "精通SQL Server 7.0資料庫系統",
+    "BookAuthor": "方盈",
+    "BookBoughtDate": "1990-06-18",
+    "BookPublisher": "零壹"
+},
+{
     "BookId": 3,
     "BookCategory": "資料庫",
     "BookName": "DB2 Answers! Certified Tech Support",
