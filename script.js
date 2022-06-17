@@ -20,9 +20,6 @@ function domReady() {
     document.getElementById('bookSearch').value = localStorage.getItem('searchWord');
     search();
   }
-  
-  
-
 }
       /**取搜尋結果或全部資料 */
 function getFilterOrBookdata(){
@@ -32,12 +29,11 @@ function getFilterOrBookdata(){
   }else{
     return filterBook 
   }
-
   //也可以寫做
   //let tempBookData
   //tempBookData = bookData;
   //tempBookData = filterBook;
-   // return tempBookData
+  // return tempBookData
 }
 
 function result() {
@@ -102,15 +98,15 @@ function add() {
   })
   //重整所有資料
   result();
+  //當最後一頁總比數大於等於10就跳新的一頁
+  if ((getPageEnd() - (tempPage - 1) * pageSize) >= 10){
+      repage();
+      nextPage();
+    }
   localStorage.setItem('bookData', JSON.stringify(bookData));
-  if ((getPageEnd() - (tempPage - 1) * pageSize) > 10){
-    nextPage();
-  }
-  createPage();
 }
 
 function deleteBook(Id) {
-  
   //找出index
   let bookIndex = bookData.findIndex(x => {
     return x.BookId === Id
@@ -119,16 +115,14 @@ function deleteBook(Id) {
   //找到的index，刪除一個
   bookData.splice(bookIndex, 1);
   result();
-  localStorage.setItem('bookData', JSON.stringify(bookData))
+  
   //最後一頁 = 0 的情況
   if ((getPageEnd() - (tempPage - 1) * pageSize) === 0){
     prePage();
    }
-  for (let j = document.getElementsByName('pageSearch').length - 1; j >= 0; j--) {
-    document.getElementsByName('pageSearch')[j].remove()
-  };
-  createPage();
+  repage();
   setPageClass(tempPage);
+  localStorage.setItem('bookData', JSON.stringify(bookData))
 }
 
 function updateBookById(bookId) {
@@ -172,7 +166,7 @@ function createPage() {
   for (let i = 1; i <= Math.ceil(tempBookData.length / pageSize); i++) {
     document.getElementById('page').innerHTML = document.getElementById('page').innerHTML +
       `
-    <span name='pageSearch' id="_${i}" onclick="turnPage(${i})">${i}</span>
+    <span name='page' id="_${i}" onclick="turnPage(${i})">${i}</span>
     `
   }
 }
@@ -202,7 +196,6 @@ function prePage() {
     turnPage(tempPage);
   };
 }
-
 function nextPage() {
   let tempBookData = getFilterOrBookdata();
      //以免超出總頁碼
@@ -230,16 +223,18 @@ function search() {
     x.BookCategory.includes(document.getElementById('bookSearch').value)
     || x.BookName.includes(document.getElementById('bookSearch').value)
   );
-  //刪除所有搜尋結果頁碼
-  for (let j = document.getElementsByName('pageSearch').length - 1; j >= 0; j--) {
-    document.getElementsByName('pageSearch')[j].remove()
-  };
+  
   //搜尋結果跳回第一頁
   tempPage = 1;
-  createPage();
+  repage();
   result();
-
-  localStorage.setItem('searchWord', document.getElementById('bookSearch').value)
+  localStorage.setItem('searchWord', document.getElementById('bookSearch').value);
   
 }
-/**重 */
+/**重整頁碼 */
+function repage() {
+  for (let j = document.getElementsByName('page').length - 1; j >= 0; j--) {
+    document.getElementsByName('page')[j].remove()
+  };
+  createPage();
+}
