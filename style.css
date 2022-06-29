@@ -1,16 +1,25 @@
 .currentPage {
-  color:red;
+  color:red !important;
 }
 .paginator {
   display: flex;
   justify-content: center;
 }
-.pre-page {
-  margin-left: 15px;
-  margin-right: 5px;
-}
-.next-page {
-  margin-right: 15px;
-  margin-left: 5px;
+#page {
+  display: flex;
 }
 
+.update {
+  white-space: nowrap;
+}
+
+#bookSearch {
+  display: inline-block;
+  width: calc(100% - 125px);
+}
+.search-button {
+  margin-top: -3px;
+}
+.add-button {
+  margin-top: -3px;
+}

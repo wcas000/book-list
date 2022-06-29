@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,90 +13,96 @@
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body onload="domReady()" >
- <button onclick="openWindow()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">新增</button>
 
+<body onload="domReady()">
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-<!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"> </h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title"> </h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-         <div class="container mt-3">
-    <div class="mb-3 mt-3">
-      <label>書籍類別:</label>
-      <input type="text" class="form-control" id="bookCategory" placeholder="請輸入書籍類別">
-    </div>
-     <div class="mb-3 mt-3">
-      <label>書籍名稱:</label>
-      <input type="text" class="form-control" id="bookName" placeholder="請輸入書籍名稱" >
-    </div>
-     <div class="mb-3 mt-3">
-      <label>作者:</label>
-      <input type="text" class="form-control" id="bookAuthor" placeholder="請輸入作者名稱" >
-    </div>
-    <div class="mb-3 mt-3">
-      <label>購買日期:</label>
-      <input type="text" class="form-control" id="bookBoughtDate" placeholder="請輸入購買日期" >
-    </div>
-    <div class="mb-3 mt-3">
-      <label>出版商:</label>
-      <input type="text" class="form-control" id="bookPublisher" placeholder="請輸入出版商" >
-    </div>
-    <!-- <button onclick="add()" class="btn btn-primary">新增</button>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="container mt-3">
+            <div class="mb-3 mt-3">
+              <label>書籍類別:</label>
+              <input type="text" class="form-control" id="bookCategory" placeholder="請輸入書籍類別">
+            </div>
+            <div class="mb-3 mt-3">
+              <label>書籍名稱:</label>
+              <input type="text" class="form-control" id="bookName" placeholder="請輸入書籍名稱">
+            </div>
+            <div class="mb-3 mt-3">
+              <label>作者:</label>
+              <input type="text" class="form-control" id="bookAuthor" placeholder="請輸入作者名稱">
+            </div>
+            <div class="mb-3 mt-3">
+              <label>購買日期:</label>
+              <input type="text" class="form-control" id="bookBoughtDate" placeholder="請輸入購買日期">
+            </div>
+            <div class="mb-3 mt-3">
+              <label>出版商:</label>
+              <input type="text" class="form-control" id="bookPublisher" placeholder="請輸入出版商">
+            </div>
+            <!-- <button onclick="add()" class="btn btn-primary">新增</button>
     <button onclick="updateBook()" class="btn btn-primary">修改</button> -->
-</div>
-      </div>
+          </div>
+        </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button onclick="save()" type="button" class="btn btn-danger" data-bs-dismiss="modal">存檔</button>
-      </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button onclick="save()" type="button" class="btn btn-danger" data-bs-dismiss="modal">存檔</button>
+        </div>
 
+      </div>
     </div>
   </div>
-</div>
-    
-    <div>搜尋關鍵字 <input id="bookSearch" type="text" oninput="search()"></div>
-  
-    <button onclick="search()">搜尋</button>
-    
-    <table id="result">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="mb-3 mt-3 col-6">
+      <input id="bookSearch" oninput="search()" class="form-control" placeholder="請輸入關鍵字">
 
-      <tr>
-        <th></th>
-        <th></th>
-        <th>BookId</th>
-        <th>BookCategory</th>
-        <th>BookName</th>
-        <th>BookAuthor</th>
-        <th>BookBoughtDate</th>
-        <th>BookPublisher</th>
-      </tr>
-      
+      <button class="btn btn-primary search-button" onclick="search()">搜尋</button>
+      <button onclick="openWindow()" type="button" class="btn btn-info add-button" data-bs-toggle="modal"
+        data-bs-target="#myModal">新增</button>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+
+    <table id="result" class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>BookId</th>
+          <th>BookCategory</th>
+          <th>BookName</th>
+          <th>BookAuthor</th>
+          <th>BookBoughtDate</th>
+          <th>BookPublisher</th>
+        </tr>
+      </thead>
 
     </table>
   </div>
 
+
+
   <div id="paginator" class="paginator">
-    <span onclick="firstPage()"><<</span>
-    <span class="pre-page" onclick="prePage()"> < </span>
-    <span id="page">
-      
+    <span class="pagination">
+      <span onclick="firstPage()"><a class="page-link" >&lt;&lt;</a></span>
+      <span onclick="prePage()" class="page-item"><a class="page-link" >&lt;</a></span>
+      <span id="page"></span>
+      <span onclick="nextPage()" class="page-item"><a class="page-link" >&gt;</a></span>
+      <span class="page-item" onclick="lastPage()"><a class="page-link" >&gt;&gt;</a></span>
     </span>
-    <span class="next-page" onclick="nextPage()"> > </span>
-    <span onclick="lastPage()">>></span>
-
-
-
   </div>
 </body>
+
 </html>
