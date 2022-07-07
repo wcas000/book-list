@@ -4,12 +4,15 @@
 .paginator {
   display: flex;
   justify-content: center;
+  
 }
 #page {
   display: flex;
 }
-
-.update {
+.pagination {
+  cursor: pointer;
+}
+.updateBookById-btn {
   white-space: nowrap;
 }
 
@@ -22,4 +25,15 @@
 }
 .add-button {
   margin-top: -3px;
+}
+/* datepicker */
+.input-group-append {
+  cursor: pointer;
+}
+.bookCategoryImg {
+  display: flex;
+  justify-content: center;
+  width: 450px;
+  height: 65px;
+
 }

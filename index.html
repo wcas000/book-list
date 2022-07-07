@@ -12,10 +12,14 @@
   <script src="book-data.js"></script>
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <script src="https://kit.fontawesome.com/305b5494de.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 </head>
 
-<body onload="domReady()">
-  <!-- The Modal -->
+<body>
+
+  <!-- 新增 The Modal -->
   <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -29,10 +33,25 @@
         <!-- Modal body -->
         <div class="modal-body">
           <div class="container mt-3">
-            <div class="mb-3 mt-3">
-              <label>書籍類別:</label>
-              <input type="text" class="form-control" id="bookCategory" placeholder="請輸入書籍類別">
+            <div class="bookCategoryImg">
+              <img id="bookCategoryImg" alt="">
             </div>
+            <div class="mb-3 mt-3">
+              <span>書籍類別：</span>
+              <select id="bookCategory"  onchange="changeImg()" class="form-select" aria-label="Default select example">
+                
+                <option imgsrc="https://img.icons8.com/ios/50/000000/database.png" value="資料庫">資料庫</option>
+                <option imgsrc="https://img.icons8.com/ios/50/000000/internet--v1.png" value="網際網路">網際網路</option>
+                <option imgsrc="https://img.icons8.com/external-phatplus-lineal-phatplus/64/000000/external-application-computing-network-phatplus-lineal-phatplus.png"  value="應用系統整合">應用系統整合</option>
+                <option imgsrc="https://img.icons8.com/external-outline-geotatah/64/000000/external-health-the-new-normal-outline-geotatah-2.png"  value="家庭保健">家庭保健</option>
+                <option imgsrc="https://img.icons8.com/ios-filled/50/000000/language.png"  value="語言">語言</option>
+                <option imgsrc="https://img.icons8.com/fluency-systems-regular/48/000000/business-management.png"  value="管理">管理</option>
+                <option imgsrc="https://img.icons8.com/wired/64/000000/marketing.png"  value="行銷">行銷</option>
+              </select>
+              <!-- <label>書籍類別:<>
+              <input type="text" class="form-control" id="bookCategory" placeholder="請輸入書籍類別"> -->
+            </div>
+            
             <div class="mb-3 mt-3">
               <label>書籍名稱:</label>
               <input type="text" class="form-control" id="bookName" placeholder="請輸入書籍名稱">
@@ -43,7 +62,21 @@
             </div>
             <div class="mb-3 mt-3">
               <label>購買日期:</label>
-              <input type="text" class="form-control" id="bookBoughtDate" placeholder="請輸入購買日期">
+              <section class="container datepicker">
+                <form class="row">
+                  <div class="col-5">
+                    <div class="input-group date" id="datepicker">
+                      <input type="text" class="form-control" id="date" />
+                      <span class="input-group-append">
+                        <span class="input-group-text bg-light d-block">
+                          <i class="fa fa-calendar"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              </section>
+              <!-- <input type="text" class="form-control" id="bookBoughtDate" placeholder="請輸入購買日期"> -->
             </div>
             <div class="mb-3 mt-3">
               <label>出版商:</label>
@@ -59,6 +92,26 @@
           <button onclick="save()" type="button" class="btn btn-danger" data-bs-dismiss="modal">存檔</button>
         </div>
 
+      </div>
+    </div>
+  </div>
+  <!-- 刪除 The Modal -->
+  <div class="modal" id="myModal-delete">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          是否要刪除此本書籍
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger deleteBook-btn" data-bs-dismiss="modal">是</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">否</button>
+        </div>
+        
+  
       </div>
     </div>
   </div>
@@ -106,3 +159,6 @@
 </body>
 
 </html>
+
+
+

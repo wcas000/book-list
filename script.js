@@ -3,11 +3,7 @@ let tempBookId = null;
 let tempPage = localStorage.getItem('page');
 let pageSize = 10;
 let filterBook = []
-//當local storage沒有的時候
-if (tempPage === null) {
-  tempPage = 1;
-}
-function domReady() {
+$(document).ready(function () {
   //當local storage不等於沒有的時候
   if (localStorage.getItem('bookData') !== null) {
     bookData = JSON.parse(localStorage.getItem('bookData'))
@@ -20,7 +16,14 @@ function domReady() {
     $('#bookSearch').val(localStorage.getItem('searchWord'));
     search();
   }
+  
+
+});
+//當local storage沒有的時候
+if (tempPage === null) {
+  tempPage = 1;
 }
+
 function openWindow(func) {
   if (func === 'updateBookById') {
     $('#myModal .modal-title').html('修改');
@@ -74,8 +77,9 @@ function result() {
       $('#result').html() +
       `
     <tr id="${tempBookData[i].BookId}" name="trData" >
-        <td> <button class="btn btn-danger" onclick="deleteBook(${tempBookData[i].BookId})">X</button></td>
-        <td> <button class="btn btn-primary update" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateBookById(${tempBookData[i].BookId})">修改</button></td>
+      
+        <td> <button class="x-button btn btn-danger " data-bs-toggle="modal" data-bs-target="#myModal-delete" bookid="${tempBookData[i].BookId}">X</button></td>
+        <td> <button class="btn btn-primary updateBookById-btn" data-bs-toggle="modal" data-bs-target="#myModal" bookid="${tempBookData[i].BookId}">修改</button></td>
         <td>${tempBookData[i].BookId}</td>
         <td>${tempBookData[i].BookCategory}</td>
         <td>${tempBookData[i].BookName}</td>
@@ -88,7 +92,17 @@ function result() {
     )
 
   }
-
+  $('.x-button').click(function(){
+    let id = $(this).attr('bookid');
+    $('.deleteBook-btn').attr('bookid', id)
+  })
+  $('.deleteBook-btn').unbind("click")
+  $('.deleteBook-btn').click(function () {
+    deleteBook(parseInt($(this).attr('bookid')))
+  })
+  $('.updateBookById-btn').click(function(){
+    updateBookById(parseInt($(this).attr('bookid')))
+  })
 }
 /** 一頁不足十筆或正常筆數 */
 function getPageEnd() {
@@ -109,7 +123,7 @@ function add() {
   let bookCategory = $('#bookCategory').val();
   let bookName = $('#bookName').val();
   let bookAuthor = $('#bookAuthor').val();
-  let bookBoughtDate = $('#bookBoughtDate').val();
+  let bookBoughtDate = $('#date').val();
   let bookPublisher = $('#bookPublisher').val();
 
   //將要新增的書push進去bookData陣列中
@@ -159,7 +173,7 @@ function updateBookById(Id) {
   $('#bookCategory').val(bookData[bookIndex].BookCategory);
   $('#bookName').val(bookData[bookIndex].BookName);
   $('#bookAuthor').val(bookData[bookIndex].BookAuthor);
-  $('#bookBoughtDate').val(bookData[bookIndex].BookBoughtDate);
+  $('#date').val(bookData[bookIndex].BookBoughtDate);
   $('#bookPublisher').val(bookData[bookIndex].BookPublisher);
   tempBookIndex = bookIndex;
   tempBookId = Id;
@@ -173,13 +187,13 @@ function updateBook() {
     "BookCategory": $('#bookCategory').val(),
     "BookName": $('#bookName').val(),
     "BookAuthor": $('#bookAuthor').val(),
-    "BookBoughtDate": $('#bookBoughtDate').val(),
+    "BookBoughtDate": $('#date').val(),
     "BookPublisher": $('#bookPublisher').val(),
   }
   $('#bookCategory').val('');
   $('#bookName').val('');
   $('#bookAuthor').val('');
-  $('#bookBoughtDate').val('');
+  $('#date').val('');
   $('#bookPublisher').val('');
 
   result();
@@ -273,4 +287,17 @@ function repage() {
   // };
   createPage();
 }
+function changeImg() {
+  //選取img id加上src屬性
+  $("#bookCategoryImg").attr("src", $("#bookCategory option:selected").attr("imgsrc"))
+}
+
+
+/**datepicker */
+$(function () {
+  $('#datepicker').datepicker();
+});
+
+
+
 
