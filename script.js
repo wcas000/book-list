@@ -3,6 +3,7 @@ let tempBookId = null;
 let tempPage = localStorage.getItem('page');
 let pageSize = 10;
 let filterBook = []
+
 $(document).ready(function () {
   //當local storage不等於沒有的時候
   if (localStorage.getItem('bookData') !== null) {
@@ -16,7 +17,12 @@ $(document).ready(function () {
     $('#bookSearch').val(localStorage.getItem('searchWord'));
     search();
   }
-  
+
+  $('#bookCategory').change(function () {
+    //選取img id加上src屬性(#bookCategory 選取的option的imgsrc屬性)
+    $("#bookCategoryImg").attr("src", $("#bookCategory option:selected").attr("imgsrc"))
+    
+  })
 
 });
 //當local storage沒有的時候
@@ -28,10 +34,11 @@ function openWindow(func) {
   if (func === 'updateBookById') {
     $('#myModal .modal-title').html('修改');
   } else {
-    $('#bookCategory').val('');
+    $('#bookCategory').val('資料庫');
+    $('#bookCategory').change();
     $('#bookName').val('');
     $('#bookAuthor').val('');
-    $('#bookBoughtDate').val('');
+    $('#date').val('');
     $('#bookPublisher').val('');
     $('#myModal .modal-title').html('新增');
   }
@@ -92,7 +99,7 @@ function result() {
     )
 
   }
-  $('.x-button').click(function(){
+  $('.x-button').click(function () {
     let id = $(this).attr('bookid');
     $('.deleteBook-btn').attr('bookid', id)
   })
@@ -100,7 +107,7 @@ function result() {
   $('.deleteBook-btn').click(function () {
     deleteBook(parseInt($(this).attr('bookid')))
   })
-  $('.updateBookById-btn').click(function(){
+  $('.updateBookById-btn').click(function () {
     updateBookById(parseInt($(this).attr('bookid')))
   })
 }
@@ -286,10 +293,6 @@ function repage() {
   //   document.getElementsByName('page')[j].remove()
   // };
   createPage();
-}
-function changeImg() {
-  //選取img id加上src屬性
-  $("#bookCategoryImg").attr("src", $("#bookCategory option:selected").attr("imgsrc"))
 }
 
 
