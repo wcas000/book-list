@@ -12,16 +12,22 @@
   <script src="book-data.js"></script>
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
   <script src="https://kit.fontawesome.com/305b5494de.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 </head>
 
 <body>
-  <div class="jumbotron jumbotron-fluid ">
-    <div class="container">
-      <h1 class="display-4">Fluid jumbotron</h1>
-      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container search-line row">
+      <div class="col-6">
+        <input id="bookSearch" oninput="search()" class="form-control" placeholder="請輸入關鍵字">
+        <button class="btn btn-primary search-button" onclick="search()">搜尋</button>
+        <button onclick="openWindow()" type="button" class="btn btn-info add-button" data-bs-toggle="modal"
+          data-bs-target="#myModal">新增</button>
+      </div>
     </div>
   </div>
 
@@ -44,20 +50,27 @@
             </div>
             <div class="mb-3 mt-3">
               <span>書籍類別：</span>
-              <select id="bookCategory"  class="form-select" aria-label="Default select example">
-                
-                <option imgsrc="https://img.icons8.com/ios/50/000000/database.png" value="資料庫">資料庫</option>
-                <option imgsrc="https://img.icons8.com/ios/50/000000/internet--v1.png" value="網際網路">網際網路</option>
-                <option imgsrc="https://img.icons8.com/external-phatplus-lineal-phatplus/64/000000/external-application-computing-network-phatplus-lineal-phatplus.png"  value="應用系統整合">應用系統整合</option>
-                <option imgsrc="https://img.icons8.com/external-outline-geotatah/64/000000/external-health-the-new-normal-outline-geotatah-2.png"  value="家庭保健">家庭保健</option>
-                <option imgsrc="https://img.icons8.com/ios-filled/50/000000/language.png"  value="語言">語言</option>
-                <option imgsrc="https://img.icons8.com/fluency-systems-regular/48/000000/business-management.png"  value="管理">管理</option>
-                <option imgsrc="https://img.icons8.com/wired/64/000000/marketing.png"  value="行銷">行銷</option>
+              <select id="bookCategory" class="form-select" aria-label="Default select example">
+
+                <option
+                  imgsrc="https://img.icons8.com/external-others-pike-picture/50/000000/external-Universe-Philosophy-philosophy-others-pike-picture-2.png"
+                  value="社會哲思">社會哲思</option>
+                <option imgsrc="https://img.icons8.com/ios-filled/50/000000/literature--v1.png" value="文學">文學</option>
+                <option
+                  imgsrc="https://img.icons8.com/external-others-pike-picture/50/000000/external-Narcissism-problems-others-pike-picture-2.png"
+                  value="心理勵志">心理勵志</option>
+                <option
+                  imgsrc="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-software-engineering-kiranshastry-lineal-kiranshastry.png"
+                  value="電腦資訊">電腦資訊</option>
+                <option
+                  imgsrc="https://img.icons8.com/external-phatplus-solid-phatplus/64/000000/external-health-care-mobile-network-phatplus-solid-phatplus.png"
+                  value="健康養生">健康養生</option>
+                <option imgsrc="https://img.icons8.com/wired/64/000000/marketing.png" value="行銷">行銷</option>
               </select>
               <!-- <label>書籍類別:<>
               <input type="text" class="form-control" id="bookCategory" placeholder="請輸入書籍類別"> -->
             </div>
-            
+
             <div class="mb-3 mt-3">
               <label>書籍名稱:</label>
               <input type="text" class="form-control" id="bookName" placeholder="請輸入書籍名稱">
@@ -105,32 +118,23 @@
   <div class="modal" id="myModal-delete">
     <div class="modal-dialog">
       <div class="modal-content">
-  
+
         <!-- Modal body -->
         <div class="modal-body">
           是否要刪除此本書籍
         </div>
-  
+
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger deleteBook-btn" data-bs-dismiss="modal">是</button>
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">否</button>
         </div>
-        
-  
+
+
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="mb-3 mt-3 col-6">
-      <input id="bookSearch" oninput="search()" class="form-control" placeholder="請輸入關鍵字">
 
-      <button class="btn btn-primary search-button" onclick="search()">搜尋</button>
-      <button onclick="openWindow()" type="button" class="btn btn-info add-button" data-bs-toggle="modal"
-        data-bs-target="#myModal">新增</button>
-    </div>
-  </div>
 
   <div class="container mt-3">
 
@@ -139,12 +143,12 @@
         <tr>
           <th></th>
           <th></th>
-          <th>BookId</th>
-          <th>BookCategory</th>
-          <th>BookName</th>
-          <th>BookAuthor</th>
-          <th>BookBoughtDate</th>
-          <th>BookPublisher</th>
+          <th>Id</th>
+          <th>類別</th>
+          <th>名稱</th>
+          <th>作者</th>
+          <th>購買日期</th>
+          <th>出版商</th>
         </tr>
       </thead>
 
@@ -155,16 +159,13 @@
 
   <div id="paginator" class="paginator">
     <span class="pagination">
-      <span onclick="firstPage()"><a class="page-link" >&lt;&lt;</a></span>
-      <span onclick="prePage()" class="page-item"><a class="page-link" >&lt;</a></span>
+      <span onclick="firstPage()"><a class="page-link">&lt;&lt;</a></span>
+      <span onclick="prePage()" class="page-item"><a class="page-link">&lt;</a></span>
       <span id="page"></span>
-      <span onclick="nextPage()" class="page-item"><a class="page-link" >&gt;</a></span>
-      <span class="page-item" onclick="lastPage()"><a class="page-link" >&gt;&gt;</a></span>
+      <span onclick="nextPage()" class="page-item"><a class="page-link">&gt;</a></span>
+      <span class="page-item" onclick="lastPage()"><a class="page-link">&gt;&gt;</a></span>
     </span>
   </div>
 </body>
 
 </html>
-
-
-

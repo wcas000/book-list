@@ -41,7 +41,12 @@
   height: 300px;
   display: flex;
   align-items: center;
-  background: url("./pexels-suzy.jpg");
+  background: url("./pexels-photo-2908984.jpeg");
   background-size: cover;
   
+}
+.search-line {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
 }

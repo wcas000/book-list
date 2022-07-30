@@ -34,7 +34,7 @@ function openWindow(func) {
   if (func === 'updateBookById') {
     $('#myModal .modal-title').html('修改');
   } else {
-    $('#bookCategory').val('資料庫');
+    $('#bookCategory').val('社會哲思');
     $('#bookCategory').change();
     $('#bookName').val('');
     $('#bookAuthor').val('');
