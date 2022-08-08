@@ -39,14 +39,11 @@
 }
 .jumbotron {
   height: 300px;
-  display: flex;
-  align-items: center;
   background: url("./pexels-photo-2908984.jpeg");
   background-size: cover;
   
 }
-.search-line {
-  margin-top: 150px;
-  display: flex;
+#searchLine {
+  padding-top: 150px;
   justify-content: center;
 }
